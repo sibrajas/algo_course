@@ -1,4 +1,5 @@
 import copy
+import csv
 import sys,resource
 import time
 class Heap:
@@ -155,19 +156,28 @@ if __name__=='__main__':
         resource.setrlimit(resource.RLIMIT_CPU,(resource.RLIM_INFINITY,resource.RLIM_INFINITY))#(2**30,2**31))
         resource.setrlimit(resource.RLIMIT_DATA,(resource.RLIM_INFINITY,resource.RLIM_INFINITY))#(2**30,2**31))
         resource.setrlimit(resource.RLIMIT_STACK,(resource.RLIM_INFINITY,resource.RLIM_INFINITY))#(2**30,2**31))
+        sys.setrecursionlimit(10**6)
+        #resource.setrlimit(resource.RLIMIT_STACK,(2**29,2**30))
         s=time.time()
         if 0:
 		with open("dijkstra_test20000.txt") as fd:
-		    for line in fd:
-			line=line.strip().split()
+		    for line in csv.reader(fd,delimiter='\t'):
+			#line=line.strip().split()
 			vertex1=int(line[0])
-			g1.add_vertex(vertex1)
-			for edge in line[1:]:
+                        print vertex1
+			#g1.add_vertex(vertex1)
+                        values=[]
+			for i in range(1,len(line)):
 			    #edge=edge.split(',')
-			    [vertex2,edgelen]=map(int,edge.split(','))
-			    g1.add_edge(vertex1,vertex2,edgelen)
+                            if line[i]!='':
+                                vertex2=str.split(line[i],',')
+                                values.append([int(vertex2[0]),int(vertex2[1])])
+			    #[vertex2,edgelen]=map(int,edge.split(','))
+			    #g1.add_edge(vertex1,vertex2,edgelen)
+                        g[vertex1]=values
+                #print g
         if 1:
-		with open("dijkstraData.txt") as fd:
+		with open("dijkstra_test20000.txt") as fd:
 		    for line in fd:
 			line=line.strip().split()
 			#print line
