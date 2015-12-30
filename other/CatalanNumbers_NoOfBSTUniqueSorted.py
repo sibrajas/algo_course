@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[25]:
+# In[56]:
 
 from Treenode import Treenode
 memo=[0 for i in range(1,30)]
@@ -26,6 +26,8 @@ def CountBinaryTrees(n):
 for i in range(2,10):
     x=CountBinaryTrees(i)
     print x
+#These are the catalan numbers 
+#calculated with fact(2n)/(fact(n)*fact(n+1))
 print memo
 
 
